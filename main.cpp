@@ -1,4 +1,3 @@
-
 #include <QAction>
 #include <QApplication>
 #include <QDebug>
@@ -20,8 +19,6 @@ int main(int argc, char *argv[])
 
     if (graph_area->parse_command_line(argc, argv)) {
         qWarning("Wrong input arguments!");
-        //       QMessageBox::warning (0, "Wrong input arguments!",
-        //                             "Wrong input arguments!");
         return -1;
     }
 
