@@ -8,20 +8,18 @@ class Window : public QWidget
     Q_OBJECT
 
   private:
-    int func_id;
-    const char *f_name;
-    double a;
-    double b;
-    int n;
-    int k;
-    double (*f)(double);
-
-    int display; // 7b
-    int scale; // 7c
-    int perturbation; // 7e
-    double max_f;
-
-    void DrawingFunction(QPainter &painter, double a, double b, double dx);
+	int func_id;
+	const char *f_name;
+	double a;
+	double b;
+	int n;
+	int k;
+	double (*f)(double);
+	int display; // 7b
+	int scale; // 7c
+	int perturbation; // 7e
+	double max_f;
+	void DrawingFunction(QPainter &painter, double a, double b, double dx);
 	void DrawingApproximation(QPainter &painter, double a, double b, double dx,
                                int n, const double *X, const double *A, int m);
 	void DrawingError(QPainter &painter, double a, double b, double dx,
