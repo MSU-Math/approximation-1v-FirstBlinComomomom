@@ -53,6 +53,7 @@ static double f_4(double x)
 	return pow(x, 4);
 }
 
+// a, b have to be regulated
 static double f_5(double x)
 {
 	return exp(x);
@@ -350,6 +351,8 @@ void Window::paintEvent(QPaintEvent * /* event */)
     painter.drawText(10, 80, QString("n = %1").arg(n));
     painter.drawText(10, 100, QString("perturbation p = %1").arg(perturbation));
     painter.drawText(10, 120, QString("display= %1").arg(display));
+	//painter.drawTexter(10, 140, QString(" = %1").
+	// show |f_table - f_app|
     delete[] X;
     delete[] F;
     if (A1)  {delete[] A1; }

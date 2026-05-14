@@ -29,7 +29,7 @@ double BuildingLagrange(const double *x, const double *f, double x0) {
 int BuildingAkima(int n, const double *x, const double *f, double *a, double *extra) {
 	double w_l = 0.0;
 	double w_r = 0.0;
-	    double* divided_diff = &extra[0];
+	double* divided_diff = &extra[0];
 	double *w = &extra[n];
 	double *d = &extra[2*n];
         if (n < 4)  {return -1;  }
@@ -136,12 +136,13 @@ int BuildingSplines(int n, const double *x, const double *f, double *a, double *
 	div_f2 = (f_xn1 - f[n - 1])/(x_n1 - x[n -1]);
 	d[n - 1] = ((x_n1 -x[n - 1])* divided_diff[n - 2]+
 				(x[n -1] - x[n - 2]) * div_f2)/(x_n1 - x[n-2]);
+	// have to be changed
 	for(int i = 1; i < n - 1; i++) {
 		t = i - 1;
 		upper[t] = x[i] - x[i -1];
 		b[t] = 3*divided_diff[i - 1]*(x[i + 1] - x[i]) +
 				3*divided_diff[i]*(x[i] - x[i - 1]);
-		if (t < n - 3) {
+		if (t < n - 2) {
 			lower[t] = x[i + 1] - x[i];
 			diag[t] = 2*(x[i + 1] - x[i - 1]);
 	        }
