@@ -7,7 +7,7 @@ double EvaluationAkima(double x, double a, double b, int n, const double *X, con
 
 double BuildingLagrange(const double *x, const double *f, double x0);
 
-int BuildingSplines(int n, const double *x, const double *f, double *a, double *extra);
+int BuildingSplines(int n, const double *x, const double *f, double *a, double *extra, double f_left_ext, double f_right_ext);
 
 double EvaluationSplines(double x, double a, double b, int n, const double *X, const double *A);
 
