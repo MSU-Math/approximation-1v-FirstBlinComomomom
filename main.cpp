@@ -1,4 +1,3 @@
-
 #include <QAction>
 #include <QApplication>
 #include <QDebug>
@@ -20,13 +19,10 @@ int main(int argc, char *argv[])
 
     if (graph_area->parse_command_line(argc, argv)) {
         qWarning("Wrong input arguments!");
-        //       QMessageBox::warning (0, "Wrong input arguments!",
-        //                             "Wrong input arguments!");
         return -1;
     }
 
-    action = tool_bar->addAction("&Change function", graph_area,
-                                 SLOT(change_func()));
+    action = tool_bar->addAction("&Change function", graph_area, SLOT(change_func()));
     action->setShortcut(QString("Ctrl+C"));
 
     action = tool_bar->addAction("E&xit", window, SLOT(close()));
