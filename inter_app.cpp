@@ -5,7 +5,6 @@
 #define EPS 1e-16
 #define N 4
 
-/*
 double BuildingLagrange(const double *x, const double *f, double x0)
 {
     double result = 0.0;
@@ -27,24 +26,6 @@ double BuildingLagrange(const double *x, const double *f, double x0)
             sum += prod / (x[i] - x[j]);
         }
         result += f[i] * sum;
-    }
-    return result;
-}
-*/
-
-double BuildingLagrange(const double *x, const double *f, double x0)
-{
-    double result = 0.0;
-    double prod = 0.0;
-    for (int i = 0; i < 4; i++) {
-        prod = 1.0;
-        for (int k = 0; k < 4; k++) {
-             if (k == i) {
-	            continue;
-	     }
-             prod *= (x0 - x[k]) / (x[i] - x[k]);
-	}
-        result += f[i] * prod;
     }
     return result;
 }
