@@ -52,7 +52,7 @@ int BuildingAkima(int n, const double *x, const double *f, double *a,
         w_l = w[i - 1];
         w_r = w[i + 1];
         if (w_l * w_l + w_r * w_r > EPS) {
-            d[i] = (w_r * divided_diff[i - 1] + w_l * divided_diff[i - 1]) /
+            d[i] = (w_r * divided_diff[i - 1] + w_l * divided_diff[i]) /
                    (w_r + w_l);
         } else {
             d[i] = ((x[i + 1] - x[i]) * divided_diff[i - 1] +
