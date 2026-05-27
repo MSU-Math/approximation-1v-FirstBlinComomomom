@@ -219,8 +219,9 @@ void Window::paintEvent(QPaintEvent * /* event */)
                 is_first_method = true;
             }
 		pos = 200;
-		for(int i = 0; i < n; i++) {
-			painter.drawText(pos + i*10, 120, QString("%1, %2, %3, %4").arg(A1[4*i]).arg(A1[4*i + 1]).arg(A1[4*i + 2]).arg(A1[4*i + 4]));
+		for(int i = 0; i < n/5; i++) {
+			painter.drawText(pos + i*10, 120, QString("%1, %2, %3, %4, %5").
+		arg(A1[5*i]).arg(A1[5*i + 1]).arg(A1[5*i + 2]).arg(A1[5*i + 3]).arg(A1[5*i + 4]));
 		}
         }
         if (n <= 200) {
