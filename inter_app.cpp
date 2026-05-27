@@ -5,6 +5,7 @@
 #define EPS 1e-16
 #define N 4
 
+/*
 double BuildingLagrange(const double *x, const double *f, double x0)
 {
     double result = 0.0;
@@ -29,6 +30,24 @@ double BuildingLagrange(const double *x, const double *f, double x0)
     }
     return result;
 }
+*/
+
+double BuildingLagrange(const double *x, const double *f, double x0)
+{
+    double result = 0.0;
+    double prod = 0.0;
+    for (int i = 0; i < 4; i++) {
+        prod = 1.0;
+        for (int k = 0; k < 4; k++) {
+             if (k == i) {
+	            continue;
+	     }
+             prod *= (x0 - x[k]) / (x[i] - x[k]);
+	}
+        result += f[i] * prod;
+    }
+    return result;
+}
 
 // extra = n * f[x_i, x_i+1] + n * w_i + n * d_i
 int BuildingAkima(int n, const double *x, const double *f, double *a,
@@ -39,11 +58,12 @@ int BuildingAkima(int n, const double *x, const double *f, double *a,
     double *divided_diff = &extra[0];
     double *w = &extra[n];
     double *d = &extra[2 * n];
+	double h = x[1] - x[0];
     if (n < 4) {
         return -1;
     }
     for (int i = 0; i < n - 1; i++) {
-        divided_diff[i] = (f[i + 1] - f[i]) / (x[i + 1] - x[i]);
+        divided_diff[i] = (f[i + 1] - f[i]) / h;
     }
     for (int i = 1; i < n - 1; i++) {
         w[i] = fabs(divided_diff[i] - divided_diff[i - 1]);
@@ -56,7 +76,6 @@ int BuildingAkima(int n, const double *x, const double *f, double *a,
                    (w_r + w_l);
         } else {
             d[i] = ((x[i + 1] - x[i]) * divided_diff[i - 1] +
-
                     (x[i] - x[i - 1]) * divided_diff[i]) /
                    (x[i + 1] - x[i - 1]);
         }
@@ -76,9 +95,9 @@ int BuildingAkima(int n, const double *x, const double *f, double *a,
         a[4 * i] = f[i];
         a[4 * i + 1] = d[i];
         a[4 * i + 2] =
-            (3 * divided_diff[i] - 2 * d[i] - d[i + 1]) / (x[i + 1] - x[i]);
+            (3.0 * divided_diff[i] - 2.0 * d[i] - d[i + 1]) / h;
         a[4 * i + 3] =
-            (d[i] + d[i + 1] - 2 * divided_diff[i]) / (pow(x[i + 1] - x[i], 2));
+            (d[i] + d[i + 1] - 2 * divided_diff[i]) / (h * h);
     }
     return 0;
 }
