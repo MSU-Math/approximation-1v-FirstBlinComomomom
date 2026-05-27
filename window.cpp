@@ -218,6 +218,10 @@ void Window::paintEvent(QPaintEvent * /* event */)
             if (BuildingAkima(n, X, F, A1, extra1) == 0) {
                 is_first_method = true;
             }
+		pos = 200;
+		for(int i = 0; i < n; i++) {
+			painter.drawText(pos + i*10, 120, QString("%1, %2, %3, %4").arg(A1[4*i]).arg(A1[4*i + 1]).arg(A1[4*i + 2]).arg(A1[4*i + 4]));
+		}
         }
         if (n <= 200) {
             A2 = new double[4 * (n - 1)];
